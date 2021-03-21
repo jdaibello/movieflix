@@ -74,7 +74,7 @@ public class GenreResourceIT {
 
 		String accessToken = obtainAccessToken(visitorUsername, visitorPassword);
 		
-		long countGenres = genreRepository.count();		
+		long countGenres = genreRepository.count();
 
 		ResultActions result =
 				mockMvc.perform(get("/genres")

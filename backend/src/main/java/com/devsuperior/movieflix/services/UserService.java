@@ -1,12 +1,12 @@
 package com.devsuperior.movieflix.services;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -26,9 +26,9 @@ public class UserService implements UserDetailsService {
 	private UserRepository repository;
 
 	@Transactional(readOnly = true)
-	public Page<UserDTO> findAll(PageRequest pageRequest) {
-		Page<User> list = repository.findAll(pageRequest);
-		return list.map(x -> new UserDTO(x));
+	public List<UserDTO> findAll() {
+		List<User> list = repository.findAll();
+		return list.stream().map(x -> new UserDTO(x)).collect(Collectors.toList());
 	}
 
 	@Transactional(readOnly = true)
