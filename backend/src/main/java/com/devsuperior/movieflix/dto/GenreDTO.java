@@ -9,13 +9,13 @@ import com.devsuperior.movieflix.entities.Genre;
 
 public class GenreDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Long id;
-	
+
 	@Size(min = 5, max = 25, message = "Deve ter entre 5 e 25 caracteres")
 	@NotBlank(message = "Campo obrigatório")
 	private String name;
-	
+
 	public GenreDTO() {
 	}
 
@@ -24,7 +24,7 @@ public class GenreDTO implements Serializable {
 		this.id = id;
 		this.name = name;
 	}
-	
+
 	public GenreDTO(Genre entity) {
 		id = entity.getId();
 		name = entity.getName();

@@ -17,7 +17,7 @@ public class ReviewDTO implements Serializable {
 	@Size(min = 5, message = "Deve ter no mínimo 5 caracteres")
 	@NotBlank(message = "Campo obrigatório")
 	private String text;
-	
+
 	private Movie movie;
 	private User user;
 

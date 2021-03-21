@@ -1,5 +1,6 @@
 package com.devsuperior.movieflix.dto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,28 +11,29 @@ import javax.validation.constraints.Size;
 import com.devsuperior.movieflix.entities.Genre;
 import com.devsuperior.movieflix.entities.Movie;
 
-public class MovieDTO {
-	
+public class MovieDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	private Long id;
-	
+
 	@NotBlank(message = "Campo obrigatório")
 	private String title;
 	private String subTitle;
-	
+
 	@PastOrPresent
 	private Integer year;
-	
+
 	@NotBlank(message = "Campo obrigatório")
 	private String imgUrl;
-	
+
 	@Size(min = 30, message = "Deve ter no mínimo 30 caracteres")
 	@NotBlank(message = "Campo obrigatório")
 	private String synopsis;
-	
+
 	private Genre genre;
-	
+
 	private List<ReviewDTO> reviews = new ArrayList<>();
-	
+
 	public MovieDTO() {
 	}
 
@@ -44,7 +46,7 @@ public class MovieDTO {
 		this.imgUrl = imgUrl;
 		this.synopsis = synopsis;
 	}
-	
+
 	public MovieDTO(Movie entity) {
 		id = entity.getId();
 		title = entity.getTitle();
