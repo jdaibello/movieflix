@@ -21,7 +21,7 @@ public class Movie {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title;
-	private String subtitle;
+	private String subTitle;
 	private Integer year;
 	private String imgUrl;
 
@@ -38,11 +38,11 @@ public class Movie {
 	public Movie() {
 	}
 
-	public Movie(Long id, String title, String subtitle, Integer year, String imgUrl, String synopsis, Genre genre) {
+	public Movie(Long id, String title, String subTitle, Integer year, String imgUrl, String synopsis, Genre genre) {
 		super();
 		this.id = id;
 		this.title = title;
-		this.subtitle = subtitle;
+		this.subTitle = subTitle;
 		this.year = year;
 		this.imgUrl = imgUrl;
 		this.synopsis = synopsis;
@@ -65,12 +65,12 @@ public class Movie {
 		this.title = title;
 	}
 
-	public String getSubtitle() {
-		return subtitle;
+	public String getSubTitle() {
+		return subTitle;
 	}
 
-	public void setSubtitle(String subtitle) {
-		this.subtitle = subtitle;
+	public void setSubTitle(String subTitle) {
+		this.subTitle = subTitle;
 	}
 
 	public Integer getYear() {
