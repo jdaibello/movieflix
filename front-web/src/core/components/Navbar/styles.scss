@@ -2,6 +2,7 @@
   height: 70px;
   align-items: center;
   padding-left: 40px;
+  padding-right: 135px;
   margin-left: 0;
   margin-right: 0;
 }
@@ -12,4 +13,16 @@
   &:hover {
     color: #000;
   }
+}
+
+.btn-outline-dark {
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 19px;
+  letter-spacing: -0.015em;
+  width: 100px;
+  height: 30px;
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  border-radius: 10px;
 }
