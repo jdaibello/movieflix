@@ -29,7 +29,7 @@ const Navbar = () => {
           <>
             <a
               href="#logout"
-              className="btn btn-outline-dark"
+              className="btn btn-outline-dark border-radius-10"
               onClick={handleLogout}
             >
               SAIR

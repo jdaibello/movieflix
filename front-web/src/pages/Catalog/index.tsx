@@ -1,8 +1,23 @@
 import React from 'react';
+import MovieCard from './components/MovieCard';
+import './styles.scss';
 
 const Catalog = () => {
   return (
-    <h4>Catálogo</h4>
+    <div className="catalog-container">
+      <div className="catalog-movies">
+        <MovieCard />
+        <MovieCard />
+        <MovieCard />
+        <MovieCard />
+        <MovieCard />
+        <MovieCard />
+        <MovieCard />
+        <MovieCard />
+        <MovieCard />
+        <MovieCard />
+      </div>
+    </div>
   )
 }
 
