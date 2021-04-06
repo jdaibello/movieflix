@@ -1,17 +1,21 @@
 import React from 'react';
-import { ReactComponent as MovieImage } from 'core/assets/images/movie.svg';
 import './styles.scss';
+import { Movie } from 'core/types/Movie';
 
-const MovieCard = () => {
+type Props = {
+  movie: Movie;
+}
+
+const MovieCard = ({ movie }: Props) => {
   return (
     <div className="card-base border-radius-10 movie-card">
-      <MovieImage />
+      <img src={movie.imgUrl} alt={movie.title} className="movie-card-image" />
       <div className="movie-info">
         <h5 className="movie-name">
-          O Retorno do Rei
+          {movie.subTitle === null ? `${movie.title}` : `${movie.title}: ${movie.subTitle}`}
         </h5>
         <h6 className="movie-year">
-          2013
+          {movie.year}
         </h6>
       </div>
     </div>

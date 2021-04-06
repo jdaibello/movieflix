@@ -1,31 +1,38 @@
-import React from 'react';
-import { ReactComponent as MovieImage } from 'core/assets/images/movie.svg';
+import { Movie } from 'core/types/Movie';
+import { makePrivateRequest } from 'core/utils/request';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 import './styles.scss';
 
+type ParamsType = {
+  movieId: string;
+}
+
 const MovieDetails = () => {
+  const { movieId } = useParams<ParamsType>();
+  const [movie, setMovie] = useState<Movie>();
+
+  useEffect(() => {
+    makePrivateRequest({ url: `/movies/${movieId}` })
+      .then(response => setMovie(response.data));
+  }, [movieId]);
+
   return (
     <div className="movie-details-container">
       <div className="card-base border-radius-20 movie-details">
         <div className="row">
           <div className="col-6">
-            <MovieImage className="movie-details-image" />
+            <img src={movie?.imgUrl} alt={movie?.title} className="movie-details-image" />
           </div>
           <div className="col-6">
             <h1 className="movie-details-title">
-              O Retorno do Rei
+              {movie?.subTitle === null ? `${movie?.title}` : `${movie?.title}: ${movie?.subTitle}`}
             </h1>
             <h4 className="movie-details-year">
-              2013
+              {movie?.year}
             </h4>
             <p className="movie-details-card movie-details-synopsis">
-              O confronto final entre as forças do bem e do mal que lutam pelo 
-              controle do futuro da Terra Média se aproxima. Sauron planeja um 
-              grande ataque a Minas Tirith, capital de Gondor, o que faz com que 
-              Gandalf e Pippin partam para o local na intenção de ajudar a 
-              resistência. Um exército é reunido por Theoden em Rohan, em mais 
-              uma tentativa de deter as forças de Sauron. Enquanto isso, Frodo, 
-              Sam e Gollum seguem sua viagem rumo à Montanha da Perdição 
-              para destruir o anel.
+              {movie?.synopsis}
             </p>
           </div>
         </div>
