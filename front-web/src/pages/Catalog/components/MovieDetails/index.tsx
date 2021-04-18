@@ -4,6 +4,7 @@ import { makePrivateRequest } from 'core/utils/request';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router';
+import { toast } from 'react-toastify';
 import './styles.scss';
 
 type ParamsType = {
@@ -40,11 +41,11 @@ const MovieDetails = () => {
       data: payload
     })
       .then(() => {
-        // TODO: Add success toast
+        toast.success("Avaliação salva com sucesso!");
         reset();
       })
       .catch(() => {
-        // TODO: Add error toast
+        toast.error("Erro ao salvar avaliação!");
       })
   }
 
