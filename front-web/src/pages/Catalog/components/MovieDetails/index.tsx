@@ -1,6 +1,8 @@
 import { Movie } from 'core/types/Movie';
+import { getSessionData, isAllowedByRole } from 'core/utils/auth';
 import { makePrivateRequest } from 'core/utils/request';
 import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router';
 import './styles.scss';
 
@@ -8,14 +10,43 @@ type ParamsType = {
   movieId: string;
 }
 
+type FormState = {
+  text: string;
+}
+
 const MovieDetails = () => {
+  const { register, handleSubmit, reset, errors } = useForm<FormState>();
+  const [currentUser, setCurrentUser] = useState(0);
   const { movieId } = useParams<ParamsType>();
   const [movie, setMovie] = useState<Movie>();
 
   useEffect(() => {
+    const currentUserData = getSessionData();
+    setCurrentUser(currentUserData.userId);
     makePrivateRequest({ url: `/movies/${movieId}` })
       .then(response => setMovie(response.data));
   }, [movieId]);
+
+  const onSubmit = (data: FormState) => {
+    const payload = {
+      ...data,
+      movieId: movie?.id,
+      userId: currentUser
+    }
+
+    makePrivateRequest({
+      url: '/reviews',
+      method: 'POST',
+      data: payload
+    })
+      .then(() => {
+        // TODO: Add success toast
+        reset();
+      })
+      .catch(() => {
+        // TODO: Add error toast
+      })
+  }
 
   return (
     <div className="movie-details-container">
@@ -36,6 +67,32 @@ const MovieDetails = () => {
             </p>
           </div>
         </div>
+      </div>
+      <div className="card-base border-radius-20 movie-add-review">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <textarea
+            ref={register({
+              required: "Campo obrigatório",
+              minLength: { value: 5, message: "O campo deve ter no mínimo 5 caracteres" }
+            })}
+            name="text"
+            className="form-control input-base"
+            placeholder="Deixe sua avaliação aqui"
+            onBlur={(e: any) => e.target.value = e.target.value.trim()}
+            disabled={isAllowedByRole(['ROLE_VISITOR']) ? true : false}
+          />
+          {errors.text && (
+            <div className="invalid-feedback d-block">
+              {errors.text.message}
+            </div>
+          )}
+          <button
+            className="btn button-base border-radius-10"
+            disabled={isAllowedByRole(['ROLE_VISITOR']) ? true : false}
+          >
+            SALVAR AVALIÇÃO
+          </button>
+        </form>
       </div>
     </div>
   )

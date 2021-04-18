@@ -6,11 +6,11 @@ export const CLIENT_SECRET = 'movieflix123';
 
 type LoginResponse = {
   access_token: string,
-    token_type: string,
-    expires_in: number,
-    scope: string,
-    userName: string,
-    userId: number
+  token_type: string,
+  expires_in: number,
+  scope: string,
+  userName: string,
+  userId: number
 }
 
 export type Role = 'ROLE_VISITOR' | 'ROLE_MEMBER';
