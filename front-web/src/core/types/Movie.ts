@@ -29,5 +29,7 @@ export type Review = {
   id: number;
   text: string;
   movie: Movie;
+  userId: number;
+  userName: string;
   user: User;
 }

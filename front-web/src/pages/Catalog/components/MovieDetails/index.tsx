@@ -102,7 +102,7 @@ const MovieDetails = () => {
           <ReviewCard
             key={review.id}
             text={review.text}
-            user_name={review.text} // TODO: Arrumar backend para mostrar nome do usuário
+            user_name={review.userName}
           />
         ))}
       </div>
