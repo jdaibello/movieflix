@@ -1,0 +1,36 @@
+.movie-filter-container {
+  padding: 1px 0 2px 15px;
+  margin-top: 50px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.filter-select-container {
+  width: 250px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 1px solid #E1E1E1;
+  box-sizing: border-box;
+  border-radius: 10px;
+
+  .movie-genres-select__control {
+    height: 60px;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: -0.015em;
+    background-color: #6C6C6C;
+    transition: white 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
+  .movie-genres-select__indicator-separator {
+    display: none;
+  }
+
+  .movie-genres-select__placeholder {
+    color: #FFF !important;
+  }
+
+  .movie-genres-select__option {
+    background-color: #6C6C6C;
+  }
+}
