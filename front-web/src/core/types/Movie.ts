@@ -19,7 +19,15 @@ export type Genre = {
   name: string;
 }
 
+export type User = {
+  id: number;
+  name: string;
+  email: string;
+}
+
 export type Review = {
   id: number;
   text: string;
+  movie: Movie;
+  user: User;
 }

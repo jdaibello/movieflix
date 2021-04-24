@@ -1,10 +1,11 @@
+import React, { useEffect, useState } from 'react';
 import { Movie } from 'core/types/Movie';
 import { getSessionData, isAllowedByRole } from 'core/utils/auth';
 import { makePrivateRequest } from 'core/utils/request';
-import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import { toast } from 'react-toastify';
+import ReviewCard from './ReviewCard';
 import './styles.scss';
 
 type ParamsType = {
@@ -16,10 +17,11 @@ type FormState = {
 }
 
 const MovieDetails = () => {
-  const { register, handleSubmit, reset, errors } = useForm<FormState>();
+  const { register, handleSubmit, errors } = useForm<FormState>();
   const [currentUser, setCurrentUser] = useState(0);
   const { movieId } = useParams<ParamsType>();
   const [movie, setMovie] = useState<Movie>();
+  const history = useHistory();
 
   useEffect(() => {
     const currentUserData = getSessionData();
@@ -42,10 +44,10 @@ const MovieDetails = () => {
     })
       .then(() => {
         toast.success("Avaliação salva com sucesso!");
-        reset();
+        history.go(0);
       })
       .catch(() => {
-        toast.error("Erro ao salvar avaliação!");
+        toast.error("Erro ao salvar avaliação. Tente novamente!");
       })
   }
 
@@ -94,6 +96,15 @@ const MovieDetails = () => {
             SALVAR AVALIÇÃO
           </button>
         </form>
+      </div>
+      <div className="card-base border-radius-20 movie-details review-list">
+        {movie?.reviews?.map(review => (
+          <ReviewCard
+            key={review.id}
+            text={review.text}
+            user_name={review.text} // TODO: Arrumar backend para mostrar nome do usuário
+          />
+        ))}
       </div>
     </div>
   )
