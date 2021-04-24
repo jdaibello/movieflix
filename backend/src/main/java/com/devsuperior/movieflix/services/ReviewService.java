@@ -34,6 +34,7 @@ public class ReviewService {
 
 		entity.setText(dto.getText());
 		entity.setMovie(movie);
+		entity.setUser(user);
 
 		repository.save(entity);
 		return new ReviewDTO(entity, user);
