@@ -19,7 +19,7 @@ const NavBar: React.FC = () => {
   }
 
   async function logout() {
-    navigate("Home");
+    navigation.navigate("Home");
   }
 
   useEffect(() => {
