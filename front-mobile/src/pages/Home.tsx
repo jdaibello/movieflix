@@ -5,12 +5,17 @@ import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import eyesOpened from "../assets/eyes-opened.png";
 import eyesClosed from "../assets/eyes-closed.png";
 import { text, theme } from "../styles";
+import { login } from "../services/auth";
 
 const Home: React.FC = () => {
   const navigation = useNavigation();
   const [hidePassword, setHidePassword] = useState(true);
+  const [userFetchData, setUserFetchData] = useState({});
+  const [userInfo, setUserInfo] = useState({ username: "", password: "" });
 
   async function handleLogin() {
+    const data = await login(userInfo);
+    setUserFetchData(data);
     navigation.navigate("Catalog");
   }
 
@@ -24,13 +29,25 @@ const Home: React.FC = () => {
             autoCapitalize="none"
             keyboardType="email-address"
             style={theme.textInput}
+            value={userInfo.username}
+            onChangeText={(e) => {
+              const newUserInfo = { ...userInfo };
+              newUserInfo.username = e;
+              setUserInfo(newUserInfo);
+            }}
           />
           <View style={theme.passwordGroup}>
             <TextInput
               placeholder="Senha"
               autoCapitalize="none"
               style={theme.textInput}
+              value={userInfo.password}
               secureTextEntry={hidePassword}
+              onChangeText={(e) => {
+                const newUserInfo = { ...userInfo };
+                newUserInfo.password = e;
+                setUserInfo(newUserInfo);
+              }}
             />
             <TouchableOpacity
               style={theme.toggle}
