@@ -1,34 +1,16 @@
-import { api, TOKEN } from "./index";
-import queryString from "query-string";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import jwtDecode from "jwt-decode";
 
-interface AuthProps {
-  username: string;
-  password: string;
-}
+export const CLIENT_ID = "movieflix";
+export const CLIENT_SECRET = "movieflix123";
 
-export async function login(userInfo: AuthProps) {
-  const data = queryString.stringify({ ...userInfo, grant_type: "password" });
-  const result = await api.post("oauth/token", data, {
-    headers: {
-      Authorization: TOKEN,
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-  });
+export type Role = "ROLE_VISITOR" | "ROLE_MEMBER";
 
-  const { access_token } = result.data;
-  setAsyncKeys("@token", access_token);
-
-  return result;
-}
-
-async function setAsyncKeys(key: string, value: string) {
-  try {
-    await AsyncStorage.setItem(key, value);
-  } catch (e) {
-    console.warn(e);
-  }
-}
+type AccessToken = {
+  exp: number;
+  user_name: string;
+  authorities: Role[];
+};
 
 export async function isAuthenticated() {
   try {
@@ -39,10 +21,27 @@ export async function isAuthenticated() {
   }
 }
 
-export async function doLogout() {
+export async function logout() {
   try {
     AsyncStorage.removeItem("@token");
   } catch (e) {
     console.warn(e);
   }
+}
+
+async function getAcessTokenDecoded() {
+  const accessToken = (await AsyncStorage.getItem("@token")) ?? "";
+
+  try {
+    const accessTokenDecoded = jwtDecode(accessToken);
+    return accessTokenDecoded as AccessToken;
+  } catch (e) {
+    return {} as AccessToken;
+  }
+}
+
+export async function userIsMember() {
+  const { authorities } = await getAcessTokenDecoded();
+
+  return authorities.toString() === "ROLE_MEMBER";
 }

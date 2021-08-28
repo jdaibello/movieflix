@@ -104,6 +104,39 @@ const theme = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-around",
   },
+  // Catalog
+  scrollContainer: {
+    flex: 1,
+    alignItems: "center",
+    padding: 10,
+    backgroundColor: colors.darkGray,
+  },
+  // Search Input
+  inputContainer: {
+    width: "100%",
+    height: 60,
+    backgroundColor: colors.mediumGray,
+    borderRadius: 4,
+    borderColor: colors.borderGray,
+    shadowColor: colors.black,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    alignItems: "center",
+    marginTop: 10,
+    marginHorizontal: 10,
+    paddingVertical: 5,
+    paddingHorizontal: 20,
+  },
+  searchInput: {
+    width: "90%",
+    height: 50,
+    borderWidth: 1,
+    borderColor: colors.borderGray,
+  },
 });
 
 const nav = StyleSheet.create({
