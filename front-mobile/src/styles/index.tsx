@@ -48,6 +48,28 @@ const text = StyleSheet.create({
     letterSpacing: -0.015,
     color: colors.borderGray,
   },
+  // Movie Card
+  movieTitle: {
+    fontSize: 20,
+    fontWeight: "700",
+    lineHeight: 27,
+    letterSpacing: -0.015,
+    color: colors.white,
+  },
+  movieYear: {
+    fontSize: 16,
+    fontWeight: "700",
+    lineHeight: 21,
+    letterSpacing: -0.015,
+    color: colors.primary,
+  },
+  movieDescription: {
+    fontSize: 14,
+    fontWeight: "400",
+    lineHeight: 19,
+    letterSpacing: -0.015,
+    color: colors.white,
+  },
 });
 
 const theme = StyleSheet.create({
@@ -119,10 +141,30 @@ const theme = StyleSheet.create({
   },
   // Catalog
   scrollContainer: {
-    flex: 1,
-    alignItems: "center",
-    padding: 10,
     backgroundColor: colors.darkGray,
+  },
+  movieCard: {
+    width: 320,
+    height: 322,
+    backgroundColor: colors.mediumGray,
+    borderRadius: 4,
+    margin: 20,
+    shadowColor: colors.black,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    alignItems: "stretch",
+    justifyContent: "center",
+  },
+  movieImg: {
+    width: 320,
+    height: 165,
+  },
+  movieInfo: {
+    margin: 17,
   },
   // Select Genre
   selectGenreContainer: {
