@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { ScrollView, ActivityIndicator } from "react-native";
-import { SearchInput } from "../components";
+import { SelectGenre } from "../components";
 import { makePrivateRequest } from "../services";
 import { theme } from "../styles";
+import { Genre, Movie } from "../types/Movie";
 
 const Catalog: React.FC = () => {
-  const [search, setSearch] = useState("");
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<Movie[]>();
   const [loading, setLoading] = useState(false);
+  const [genre, setGenre] = useState<Genre>();
 
   async function getMovies() {
     const params = {
-      title: search,
+      genreId: genre?.id,
     };
 
     const response = await makePrivateRequest({ url: "/movies", params });
@@ -20,29 +21,18 @@ const Catalog: React.FC = () => {
     setMovies(content);
   }
 
+  function handleChangeGenre(genre: Genre) {
+    setGenre(genre);
+  }
+
   useEffect(() => {
     getMovies();
-  }, []);
-
-  const data =
-    search.length > 0
-      ? movies.filter((movie) =>
-          movie.title.toLowerCase().includes(search.toLowerCase())
-        )
-      : movies;
+  }, [genre?.id]);
 
   return (
     <ScrollView contentContainerStyle={theme.scrollContainer}>
-      <SearchInput
-        placeholder="Título do filme"
-        search={search}
-        setSearch={setSearch}
-      />
-      {loading ? (
-        <ActivityIndicator size="large" />
-      ) : (
-        data.map((movie) => console.log(movie))
-      )}
+      <SelectGenre genre={genre} handleChangeGenre={handleChangeGenre} />
+      {loading ? <ActivityIndicator size="large" /> : console.log(movies)}
     </ScrollView>
   );
 };

@@ -35,6 +35,19 @@ const text = StyleSheet.create({
     marginBottom: 60,
     textTransform: "uppercase",
   },
+  // SelectGenre
+  selectText: {
+    fontSize: 16,
+    lineHeight: 22,
+    letterSpacing: -0.015,
+    color: colors.borderGray,
+  },
+  modalItemText: {
+    fontSize: 16,
+    lineHeight: 22,
+    letterSpacing: -0.015,
+    color: colors.borderGray,
+  },
 });
 
 const theme = StyleSheet.create({
@@ -111,12 +124,21 @@ const theme = StyleSheet.create({
     padding: 10,
     backgroundColor: colors.darkGray,
   },
-  // Search Input
-  inputContainer: {
-    width: "100%",
-    height: 60,
+  // Select Genre
+  selectGenreContainer: {
+    width: deviceWidth,
+    height: 80,
     backgroundColor: colors.mediumGray,
     borderRadius: 4,
+    padding: 12,
+    marginBottom: 20,
+  },
+  selectContainer: {
+    height: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    borderWidth: 1,
     borderColor: colors.borderGray,
     shadowColor: colors.black,
     shadowOffset: {
@@ -125,17 +147,29 @@ const theme = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    alignItems: "center",
-    marginTop: 10,
-    marginHorizontal: 10,
-    paddingVertical: 5,
-    paddingHorizontal: 20,
+    borderRadius: 4,
+    paddingHorizontal: 15,
+    paddingVertical: 12,
   },
-  searchInput: {
-    width: "90%",
-    height: 50,
-    borderWidth: 1,
-    borderColor: colors.borderGray,
+  modalContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  modalContent: {
+    width: 300,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: "50%",
+    backgroundColor: colors.darkGray,
+    borderRadius: 10,
+    padding: 15,
+  },
+  modalItem: {
+    width: "100%",
+    backgroundColor: colors.mediumGray,
+    padding: 10,
+    borderRadius: 10,
+    marginVertical: 5,
   },
 });
 
