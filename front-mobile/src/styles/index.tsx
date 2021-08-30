@@ -70,6 +70,15 @@ const text = StyleSheet.create({
     letterSpacing: -0.015,
     color: colors.white,
   },
+  // Movie Details
+  movieSynopsis: {
+    fontSize: 16,
+    fontWeight: "400",
+    lineHeight: 21,
+    letterSpacing: -0.5,
+    textAlign: "justify",
+    color: colors.textGray,
+  },
 });
 
 const theme = StyleSheet.create({
@@ -212,6 +221,35 @@ const theme = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     marginVertical: 5,
+  },
+  // Movie Details
+  movieDetailsCard: {
+    flex: 1,
+    height: 690,
+    width: "100%",
+    backgroundColor: colors.mediumGray,
+    marginBottom: 25,
+    padding: 20,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  movieDetailsImg: {
+    height: 160,
+    width: 260,
+    padding: 20,
+  },
+  movieInfoContainer: {
+    padding: 10,
+  },
+  movieSynopsisContainer: {
+    height: "100%",
+    width: 260,
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: colors.borderGray,
+    padding: 10,
+    marginTop: 15,
   },
 });
 

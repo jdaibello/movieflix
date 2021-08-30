@@ -1,30 +1,67 @@
 import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  Alert,
+  Image,
+  ScrollView,
+  Text,
+  View,
+} from "react-native";
 import { makePrivateRequest } from "../services";
-import { theme } from "../styles";
-import { Movie } from "../types/Movie";
+import { userIsMember } from "../services/auth";
+import { text, theme } from "../styles";
+import { Movie, Review } from "../types/Movie";
 
 const MovieDetails: React.FC = ({
   route: {
     params: { movieId },
   },
 }) => {
-  const [currentUser, setCurrentUser] = useState(0);
+  const [loading, setLoading] = useState(false);
   const [movie, setMovie] = useState<Movie>();
 
   async function getMovie() {
+    setLoading(true);
     const response = await makePrivateRequest({ url: `/movies/${movieId}` });
     setMovie(response.data);
+    setLoading(false);
   }
 
   useEffect(() => {
     getMovie();
-  }, [movie?.reviews]);
+  }, []);
 
   return (
-    <View style={theme.container}>
-      <Text>{`Tela de detalhes do filme ${movie?.title} (tela temporária)`}</Text>
-    </View>
+    <>
+      {loading ? (
+        <ActivityIndicator size="large" />
+      ) : (
+        <ScrollView contentContainerStyle={theme.container}>
+          <ScrollView contentContainerStyle={theme.movieDetailsCard}>
+            <Image
+              source={{ uri: movie?.imgUrl }}
+              style={theme.movieDetailsImg}
+            />
+            <ScrollView contentContainerStyle={theme.movieInfoContainer}>
+              <Text style={text.movieTitle}>
+                {movie?.subTitle === null
+                  ? `${movie?.title}`
+                  : `${movie?.title}: ${movie?.subTitle}`}
+              </Text>
+              <Text style={text.movieYear}>{movie?.year}</Text>
+              <ScrollView
+                style={theme.movieSynopsisContainer}
+                showsVerticalScrollIndicator={false}
+                persistentScrollbar={true}
+                nestedScrollEnabled={true}
+              >
+                <Text style={text.movieSynopsis}>{movie?.synopsis}</Text>
+              </ScrollView>
+            </ScrollView>
+          </ScrollView>
+        </ScrollView>
+      )}
+    </>
   );
 };
 
