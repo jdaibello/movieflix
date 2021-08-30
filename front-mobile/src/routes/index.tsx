@@ -6,6 +6,7 @@ import { Text } from "react-native";
 import { NavBar } from "../components";
 import { AuthContext } from "../contexts/AuthContext";
 import { isAuthenticated } from "../services/auth";
+import MovieDetails from "../pages/MovieDetails";
 
 const Stack = createStackNavigator();
 
@@ -38,6 +39,7 @@ const Routes: React.FC = () => {
         >
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Catalog" component={Catalog} />
+          <Stack.Screen name="MovieDetails" component={MovieDetails} />
         </Stack.Navigator>
       ) : (
         <Stack.Navigator
@@ -51,6 +53,7 @@ const Routes: React.FC = () => {
         >
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Catalog" component={Catalog} />
+          <Stack.Screen name="MovieDetails" component={MovieDetails} />
         </Stack.Navigator>
       )}
     </>

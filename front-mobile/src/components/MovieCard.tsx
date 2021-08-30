@@ -13,8 +13,15 @@ interface MovieInfo {
 const MovieCard: React.FC<MovieInfo> = ({ movie, movieId }: MovieInfo) => {
   const navigation = useNavigation();
 
+  function handleDetails(movieId: number) {
+    navigation.navigate("MovieDetails", { movieId });
+  }
+
   return (
-    <TouchableOpacity style={theme.movieCard}>
+    <TouchableOpacity
+      style={theme.movieCard}
+      onPress={() => handleDetails(movieId)}
+    >
       <Image source={{ uri: movie.imgUrl }} style={theme.movieImg} />
       <View style={theme.movieInfo}>
         <Text style={text.movieTitle}>

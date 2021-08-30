@@ -40,13 +40,13 @@ const Catalog: React.FC = () => {
       ) : (
         <FlatList
           data={movies}
-          keyExtractor={(item) => String(item.id)}
+          keyExtractor={(movie) => String(movie.id)}
           renderItem={({ item }) => (
             <MovieCard key={item.id} movieId={item.id} movie={item} />
           )}
           numColumns={1}
           showsVerticalScrollIndicator={false}
-          onEndReachedThreshold={0.1} // 0.1 --> Quando o usuário chegar a 10% do final da tela
+          onEndReachedThreshold={0.1}
         />
       )}
     </ScrollView>

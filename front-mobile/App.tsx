@@ -7,9 +7,7 @@ import { isAuthenticated } from "./src/services/auth";
 import { AuthContext } from "./src/contexts/AuthContext";
 
 const App: React.FC = () => {
-  const [isUserLogged, setIsUserLogged] = useState(
-    setUserLogged() ? true : false
-  );
+  const [isUserLogged, setIsUserLogged] = useState(false);
 
   async function setUserLogged() {
     const isUserAuthenticated = await isAuthenticated();
