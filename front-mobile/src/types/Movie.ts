@@ -17,7 +17,7 @@ export type Review = {
   id: number;
   text: string;
   movieId: number;
-  user: User;
+  userName: string;
 };
 
 export type Genre = {
@@ -25,7 +25,7 @@ export type Genre = {
   name: string;
 };
 
-type User = {
+export type User = {
   id: number;
   name: string;
 };

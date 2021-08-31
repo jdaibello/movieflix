@@ -7,6 +7,7 @@ import {
   Text,
   View,
 } from "react-native";
+import { Reviews } from "../components";
 import { makePrivateRequest } from "../services";
 import { userIsMember } from "../services/auth";
 import { text, theme } from "../styles";
@@ -21,15 +22,15 @@ const MovieDetails: React.FC = ({
   const [movie, setMovie] = useState<Movie>();
 
   async function getMovie() {
-    setLoading(true);
     const response = await makePrivateRequest({ url: `/movies/${movieId}` });
     setMovie(response.data);
-    setLoading(false);
   }
 
   useEffect(() => {
+    setLoading(true);
     getMovie();
-  }, []);
+    setLoading(false);
+  }, [movie?.reviews]);
 
   return (
     <>
@@ -59,6 +60,13 @@ const MovieDetails: React.FC = ({
               </ScrollView>
             </ScrollView>
           </ScrollView>
+          <View style={theme.reviewsContainer}>
+            <ScrollView>
+              {movie?.reviews.map((review) => (
+                <Reviews key={review.id} review={review} />
+              ))}
+            </ScrollView>
+          </View>
         </ScrollView>
       )}
     </>

@@ -79,6 +79,23 @@ const text = StyleSheet.create({
     textAlign: "justify",
     color: colors.textGray,
   },
+  // Reviews
+  reviewUserName: {
+    fontSize: 16,
+    fontWeight: "700",
+    lineHeight: 21,
+    letterSpacing: -0.015,
+    color: colors.white,
+    paddingLeft: 15,
+  },
+  reviewText: {
+    fontSize: 16,
+    fontWeight: "400",
+    lineHeight: 21,
+    letterSpacing: -0.5,
+    textAlign: "justify",
+    color: colors.textGray,
+  },
 });
 
 const theme = StyleSheet.create({
@@ -225,7 +242,7 @@ const theme = StyleSheet.create({
   // Movie Details
   movieDetailsCard: {
     flex: 1,
-    height: 690,
+    height: "100%",
     width: "100%",
     backgroundColor: colors.mediumGray,
     marginBottom: 25,
@@ -250,6 +267,28 @@ const theme = StyleSheet.create({
     borderColor: colors.borderGray,
     padding: 10,
     marginTop: 15,
+  },
+  reviewsContainer: {
+    height: "25%",
+    width: "100%",
+    backgroundColor: colors.mediumGray,
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 20,
+  },
+  // Reviews
+  reviewUserContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 15,
+    marginLeft: 5,
+  },
+  reviewContainer: {
+    borderWidth: 1,
+    borderColor: colors.borderGray,
+    borderRadius: 4,
+    padding: 10,
+    marginTop: 10,
   },
 });
 
