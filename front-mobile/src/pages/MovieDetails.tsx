@@ -7,7 +7,7 @@ import {
   Text,
   View,
 } from "react-native";
-import { Reviews } from "../components";
+import { ReviewForm, Reviews } from "../components";
 import { makePrivateRequest } from "../services";
 import { userIsMember } from "../services/auth";
 import { text, theme } from "../styles";
@@ -60,6 +60,7 @@ const MovieDetails: React.FC = ({
               </ScrollView>
             </ScrollView>
           </ScrollView>
+          <ReviewForm movieId={movie?.id} />
           <View style={theme.reviewsContainer}>
             <ScrollView>
               {movie?.reviews.map((review) => (

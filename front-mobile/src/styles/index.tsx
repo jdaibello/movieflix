@@ -1,7 +1,6 @@
 import { StyleSheet, Dimensions } from "react-native";
 
 const deviceWidth = Dimensions.get("window").width;
-const deviceHeight = Dimensions.get("window").height;
 
 const colors = {
   white: "#FFFFFF",
@@ -95,6 +94,11 @@ const text = StyleSheet.create({
     letterSpacing: -0.5,
     textAlign: "justify",
     color: colors.textGray,
+  },
+  primaryTextReview: {
+    fontSize: 16,
+    fontWeight: "700",
+    textTransform: "uppercase",
   },
 });
 
@@ -245,7 +249,6 @@ const theme = StyleSheet.create({
     height: "100%",
     width: "100%",
     backgroundColor: colors.mediumGray,
-    marginBottom: 25,
     padding: 20,
     borderRadius: 10,
     alignItems: "center",
@@ -289,6 +292,40 @@ const theme = StyleSheet.create({
     borderRadius: 4,
     padding: 10,
     marginTop: 10,
+  },
+  // Review Form
+  reviewFormContainer: {
+    width: "100%",
+    backgroundColor: colors.mediumGray,
+    marginTop: 25,
+    marginBottom: 25,
+    padding: 20,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  reviewInput: {
+    height: 40,
+    width: "100%",
+    minHeight: 40,
+    backgroundColor: colors.white,
+    borderWidth: 1,
+    borderColor: colors.borderGray,
+    borderRadius: 4,
+    padding: 12,
+    fontSize: 16,
+    lineHeight: 22,
+    color: colors.darkGray,
+    marginBottom: 15,
+  },
+  primaryButtonReview: {
+    width: 280,
+    height: 40,
+    backgroundColor: colors.primary,
+    borderRadius: 4,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 });
 
