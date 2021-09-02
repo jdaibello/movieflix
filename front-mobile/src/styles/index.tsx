@@ -100,6 +100,12 @@ const text = StyleSheet.create({
     fontWeight: "700",
     textTransform: "uppercase",
   },
+  primaryTextWhite: {
+    fontSize: 20,
+    fontWeight: "700",
+    textTransform: "uppercase",
+    color: colors.white,
+  },
 });
 
 const theme = StyleSheet.create({
@@ -277,6 +283,7 @@ const theme = StyleSheet.create({
     backgroundColor: colors.mediumGray,
     borderRadius: 10,
     padding: 10,
+    marginTop: 20,
     marginBottom: 20,
   },
   // Reviews
@@ -293,12 +300,17 @@ const theme = StyleSheet.create({
     padding: 10,
     marginTop: 10,
   },
+  noReviewsContainer: {
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   // Review Form
   reviewFormContainer: {
     width: "100%",
     backgroundColor: colors.mediumGray,
     marginTop: 25,
-    marginBottom: 25,
+    marginBottom: 5,
     padding: 20,
     borderRadius: 10,
     alignItems: "center",

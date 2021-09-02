@@ -9,9 +9,8 @@ import {
 } from "react-native";
 import { ReviewForm, Reviews } from "../components";
 import { makePrivateRequest } from "../services";
-import { userIsMember } from "../services/auth";
 import { text, theme } from "../styles";
-import { Movie, Review } from "../types/Movie";
+import { Movie } from "../types/Movie";
 
 const MovieDetails: React.FC = ({
   route: {
@@ -62,11 +61,17 @@ const MovieDetails: React.FC = ({
           </ScrollView>
           <ReviewForm movieId={movie?.id} />
           <View style={theme.reviewsContainer}>
-            <ScrollView>
-              {movie?.reviews.map((review) => (
-                <Reviews key={review.id} review={review} />
-              ))}
-            </ScrollView>
+            {movie?.reviews.length > 0 ? (
+              <ScrollView>
+                {movie?.reviews.map((review) => (
+                  <Reviews key={review.id} review={review} />
+                ))}
+              </ScrollView>
+            ) : (
+              <View style={theme.noReviewsContainer}>
+                <Text style={text.primaryTextWhite}>Sem avaliações</Text>
+              </View>
+            )}
           </View>
         </ScrollView>
       )}
